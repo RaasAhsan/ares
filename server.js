@@ -1,13 +1,8 @@
 var http = require("http");
-var url = require("url");
-var router = require("./router");
 
-function start(port) {
+function start(router, port) {
 	function onRequest(request, response){
-		router.route(url.parse(request.url).pathname);
-		response.writeHead(200, {"Content-Type": "text/plain"});
-		response.write("Hello world!");
-		response.end();
+		router.route(request, response);
 	}
 
 	http.createServer(onRequest).listen(port);

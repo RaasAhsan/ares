@@ -1,3 +1,8 @@
-var ares = require("./server")
+var ares = require("./server");
+var router = require("./router");
 
-ares.start(1338);
+var index = require("./routes/index")
+
+router.get("/", index.route)
+
+ares.start(router, 1338);
