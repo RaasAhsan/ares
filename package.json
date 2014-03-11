@@ -1,6 +1,7 @@
 {
-	"name": "ares",
-	"dependencies": {
-
-	}
+  "name": "ares",
+  "description": "An image rehoster",
+  "dependencies": {
+    "hashmap": "~1.0.0"
+  }
 }

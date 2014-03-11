@@ -1,5 +1,5 @@
 
-var route(request, response) {
+function route(request, response) {
 
 }
 
