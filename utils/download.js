@@ -16,10 +16,7 @@ function download(image, output) {
 	            srcData: data,
 	            width: 512,
 	            height: 512,
-<<<<<<< HEAD
 	            format: 'png',
-=======
->>>>>>> 8dc3a3d2b7fe82099f9e892a10a098e2e026fc4c
 	            dstPath: output
 	        }, function(err, stdout, stderr) {
 	            if (err) throw err;
