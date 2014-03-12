@@ -2,6 +2,9 @@
   "name": "ares",
   "description": "An image rehoster",
   "dependencies": {
-    "hashmap": "~1.0.0"
+    "hashmap": "~1.0.0",
+    "netpbm": "~1.0.0",
+    "shortid": "~2.0.0",
+    "imagemagick": "~0.1.3"
   }
 }

@@ -13,13 +13,17 @@ function route(request, response) {
 
 	if(method == "GET") {
 		var f = gets.get(path);
-		if(f != "undefined") {
+		if(f != null) {
 			f(request, response);
+		} else {
+			defroute(request, response)
 		}
 	} else if(method == "POST") {
 		var f = posts.get(path);
-		if(f != "undefined") {
+		if(f != null) {
 			f(request, response);
+		} else {
+			defroute(request, response)
 		}
 	}
 	// check forwarded ip to ensure outsiders cant submit images
