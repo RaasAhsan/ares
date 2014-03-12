@@ -27,8 +27,6 @@ function route(request, response) {
 		}
 	}
 	// check forwarded ip to ensure outsiders cant submit images
-
-	response.end();
 }
 
 function defaultRoute(callback) {

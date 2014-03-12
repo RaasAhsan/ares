@@ -14,8 +14,7 @@ function download(image, output) {
 	    response.on('end', function () {
 	        im.resize({
 	            srcData: data,
-	            width: 512,
-	            height: 512,
+	            width: 256,
 	            format: 'png',
 	            dstPath: output
 	        }, function(err, stdout, stderr) {

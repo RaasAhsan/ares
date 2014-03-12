@@ -9,12 +9,12 @@ function route(request, response) {
 	if(query.image != "undefined") {
 		response.writeHead(200, {"Content-Type": "text/plain"});
 		var id = uid.generate();
-		response.write("Hosted " + query.image + " on localhost:1338/" + id + ".png");
+		response.end("Hosted " + query.image + " on localhost:1338/" + id + ".png");
 
 		download.download(query.image, "./images/" + id + ".png")
 	} else {
 		response.writeHead(200, {"Content-Type": "text/plain"});
-		response.write("Invalid image link.");
+		response.end("Invalid image link.");
 	}
 }
 
