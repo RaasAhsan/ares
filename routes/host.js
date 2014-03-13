@@ -1,20 +1,27 @@
 var url = require("url");
 var uid = require("shortid");
 var download = require("../utils/download");
+var config = require("../config");
 
 function route(request, response) {
 	var url_parts = url.parse(request.url, true);
 	var query = url_parts.query;
 
-	if(query.image != "undefined") {
-		response.writeHead(200, {"Content-Type": "text/plain"});
-		var id = uid.generate();
-		response.end("Hosted " + query.image + " on localhost:1338/" + id + ".png");
+	var ip = request.headers['x-real-ip'];
 
-		download.download(query.image, "./images/" + id + ".png")
+	if(ip == null || ip == "127.0.0.1") {
+		if(query.image != "undefined") {
+			var id = uid.generate();
+			download.download(query.image, config.savedir + "/" + id + ".png");
+
+			response.writeHead(200, {"Content-Type": "text/plain"});
+			response.end(config.host + "/" + id + ".png");
+		} else {
+			response.writeHead(200, {"Content-Type": "text/plain"});
+			response.end("Invalid image link.");
+		}
 	} else {
-		response.writeHead(200, {"Content-Type": "text/plain"});
-		response.end("Invalid image link.");
+		response.end("You don't permission to do that")
 	}
 }
 
