@@ -17,7 +17,6 @@ config.port = 1338;
 config.savedir = "./images";
 
 module.exports = config;
-
 ```
 
 To start Ares, run `sudo npm install` and then `nodejs index.js`.

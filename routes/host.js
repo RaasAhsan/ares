@@ -12,10 +12,10 @@ function route(request, response) {
 	if(ip == null || ip == "127.0.0.1") {
 		if(query.image != "undefined") {
 			var id = uid.generate();
-			download.download(query.image, config.savedir + "/" + id + ".png");
-
-			response.writeHead(200, {"Content-Type": "text/plain"});
-			response.end(config.host + "/" + id + ".png");
+			download.download(query.image, config.savedir + "/" + id + ".png", function() {
+				response.writeHead(200, {"Content-Type": "text/plain"});
+				response.end(config.host + "/" + id + ".png");
+			});
 		} else {
 			response.writeHead(200, {"Content-Type": "text/plain"});
 			response.end("Invalid image link.");

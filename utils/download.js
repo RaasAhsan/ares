@@ -1,7 +1,7 @@
 var http = require('http');
 var im = require('imagemagick');
 
-function download(image, output) {
+function download(image, output, callback) {
 	var request = http.get(image, function(response) {
 	    var data = '';
 
@@ -18,8 +18,8 @@ function download(image, output) {
 	            format: 'png',
 	            dstPath: output
 	        }, function(err, stdout, stderr) {
-	            if (err) throw err;
 	        });
+	        callback();
 		});
 	});
 }
