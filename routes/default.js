@@ -15,8 +15,8 @@ function route(request, response) {
 		response.end(img, 'binary');
 	} else {
 		var size = 256;
-		if(query.size != null) {
-			size = query.size;
+		if(query.s != null) {
+			size = query.s;
 		}
 		if(size > 512) {
 			size = 512;
@@ -26,17 +26,22 @@ function route(request, response) {
 		}
 
 		var imgPath = imagePaths + path;
-		if(fs.existsSync(imgPath)) {
-			im.resize({
-				srcPath: imgPath,
-				width: size
-			}, function(err, stdout, stderr) {
-				response.writeHead(200, {"Content-Type": "image/png"});
-				response.end(stdout, 'binary');
-			}); 
-		} else {
+		if(imgPath.indexOf("..") > -1) {
 			response.writeHead(200, {"Content-Type": "text/plain"});
 			response.end("Couldn't find that image.")
+		} else {
+			if(fs.existsSync(imgPath)) {
+				im.resize({
+					srcPath: imgPath,
+					width: size
+				}, function(err, stdout, stderr) {
+					response.writeHead(200, {"Content-Type": "image/png"});
+					response.end(stdout, 'binary');
+				}); 
+			} else {
+				response.writeHead(200, {"Content-Type": "text/plain"});
+				response.end("Couldn't find that image.")
+			}
 		}
 	}
 }
